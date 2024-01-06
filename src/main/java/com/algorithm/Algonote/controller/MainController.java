@@ -14,8 +14,13 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping("/join")
+    @RequestMapping("/memberForm")
     public String memberForm() {
         return "member/join";
+    }
+
+    @RequestMapping("/loginForm")
+    public String loginForm() {
+        return "member/login";
     }
 }

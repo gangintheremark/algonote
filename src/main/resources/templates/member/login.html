@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <style>
+        body {
+            margin: 0;
+            position: relative;
+        }
+
+        .input-form {
+            padding: 32px !important;
+            background: #fff;
+            -moz-border-radius: 10px;
+            border-radius: 20px;
+            -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+        }
+
+        .container {
+            min-width: 400px;
+        }
+
+        .example {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            min-height: 200px;
+            background: rgba(90, 138, 67, 0.73);
+        }
+
+        .example2 {
+            box-sizing: border-box;
+            position: absolute;
+            min-height: 500px;
+            top: 100px;
+        }
+
+        .btn {
+            background-color: #86AA75 !important;
+            border-color: #86AA75 !important;
+        }
+
+        .deleteBtn {
+            background-color: #C0C0C0 !important;
+            border-color: #C0C0C0 !important;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+</head>
+
+<body>
+<div th:include="'/common/nav'"></div>
+<div class="example" style="font-family: 'SUITE-Regular';">
+    <div class="example2 mt-5">
+        <div class="container">
+            <div class="input-form-backgroud row">
+                <form action="" method="" class="validation-form" novalidate>
+                    <div class="input-form col-md-12 mx-auto">
+                        <h4 class="mb-3">로그인</h4>
+                        <div id="inputBox">
+                            <div class="input-form-box mb-3"><span style="text-align: left; display: block;">아이디 </span>
+                                <input type="text" name="userid" class="form-control" autocomplete="off" required>
+                                <div class="invalid-feedback">아이디를 입력해주세요.</div>
+                            </div>
+                            <div class="input-form-box mb-3"><span style="text-align: left; display: block;">비밀번호 </span>
+                                <input type="password" name="passwd" class="form-control" required>
+                                <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+                            </div>
+                            <div class="button-login-box">
+                                <button type="submit" class="btn btn-primary btn-xs" style="width:100%">로그인</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            window.addEventListener('load', () => {
+                const forms = document.getElementsByClassName('validation-form');
+
+                Array.prototype.filter.call(forms, (form) => {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        </script>
+</body>
+
+</html>
