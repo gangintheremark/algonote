@@ -16,6 +16,6 @@ public class MainController {
 
     @RequestMapping("/join")
     public String memberForm() {
-        return "join";
+        return "member/join";
     }
 }
