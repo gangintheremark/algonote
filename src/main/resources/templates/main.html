@@ -2,10 +2,69 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인화면</title>
+    <style>
+        .registrationBtn {
+            color: black;
+            font-weight: bold;
+            font-size: 1.5rem;
+            width: 400px;
+            height: 80px;
+            background-color: #DFEDD0;
+            border: #DFEDD0;
+            line-height: 70px;
+        }
+
+        .circleIcon {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        div.point {
+            background-color: white;
+            padding: 20px;
+        }
+
+        #btn {
+        color: black;
+            font-weight: bold;
+            font-size: 1.5rem;
+            width: 400px;
+            height: 80px;
+            background-color: #DFEDD0;
+            border: #DFEDD0;
+            line-height: 70px;
+    </style>
 </head>
 <body>
-하이루
+<div th:include="'/common/nav'"></div>
+<div class="point">
+    <header class="masthead text-center">
+        <div class="masthead-content">
+            <div class="container px-5 mt-5">
+                <h1 class="masthead-heading mb-0">Algorithm Problem Recording Service</h1>
+                <p class="masthead-subheading mb-0 mt-3">
+                    해결한 문제는 나의 Stack 으로, 해결하지 못한 문제는 나의 Queue 로 등록 ✅</p>
+                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#" id="btn">
+                    <img src="images/icon/algorithm.png" width="auto" height="40"> &nbsp;
+                    문제 등록하러 가기</a>
+            </div>
+        </div>
+    </header>
+    <section class="text-center mt-5">
+        <div class="circleIcon">
+            <img src="images/icon/python.png" alt="" width="auto" height="60" style="border-radius: 50%;">
+        </div>
+        <div class="circleIcon mx-3">
+            <img src="images/icon/java.png" alt="" width="auto" height="60" style="border-radius: 50%;">
+        </div>
+        <div class="circleIcon">
+            <img src="images/icon/c++.png" alt="" width="auto" height="60" style="border-radius: 50%;">
+        </div>
+    </section>
+</div>
 </body>
-</html>
 </html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        body {
+        margin: 0;
+        position: relative;
+        }
+
+        .example {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            min-height: 300px;
+            background: rgba(90, 138, 67, 0.73);
+        }
+
+        .example2 {
+            text-align: center;
+            box-sizing: border-box;
+            position: absolute;
+            min-width: 1000px;
+            min-height: 500px;
+            top: 100px;
+            background: #FFFFFF;
+            border: 1px solid #DEDEDE;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+<div th:include="'/common/nav'"></div>
+<div class="example">
+    <div class="example2 text-center mt-5">
+        hello
+    </div>
+</div>
+</body>
+</html>

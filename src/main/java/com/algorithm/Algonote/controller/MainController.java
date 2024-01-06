@@ -13,4 +13,9 @@ public class MainController {
     public String goMain() {
         return "main";
     }
+
+    @RequestMapping("/join")
+    public String memberForm() {
+        return "join";
+    }
 }
