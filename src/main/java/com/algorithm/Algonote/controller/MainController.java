@@ -23,4 +23,9 @@ public class MainController {
     public String loginForm() {
         return "member/login";
     }
+
+    @RequestMapping("/registForm")
+    public String registForm() {
+        return "problem/registration";
+    }
 }
