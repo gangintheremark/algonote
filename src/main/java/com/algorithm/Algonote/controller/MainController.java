@@ -28,4 +28,9 @@ public class MainController {
     public String registForm() {
         return "problem/registration";
     }
+
+    @RequestMapping("/myProblem")
+    public String myProblem() {
+        return "problem/myProblem";
+    }
 }
