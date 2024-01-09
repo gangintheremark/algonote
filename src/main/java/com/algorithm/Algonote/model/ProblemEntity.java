@@ -2,8 +2,10 @@ package com.algorithm.Algonote.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.stereotype.Service;
 
 @Builder
+@Setter
 @Getter
 @ToString
 @NoArgsConstructor
