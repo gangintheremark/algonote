@@ -73,7 +73,7 @@
                } else if ($(this).val() === 'SWEA') {
                    $('#level').hide();
 
-                   $('#difficulty').empty(); // 기존 옵션 제거
+                   $('#difficulty').empty();
 
                    // D1부터 D8까지의 옵션 추가
                    for (let i = 1; i <= 8; i++) {
@@ -81,10 +81,10 @@
                    }
 
                    $('#difficulty').show();
-               } else if ($(this).val() === '프로그래머스') {
+               } else if ($(this).val() === 'PGM') {
                    $('#level').hide();
 
-                   $('#difficulty').empty(); // 기존 옵션 제거
+                   $('#difficulty').empty();
 
                    // Lv.0부터 Lv.5까지의 옵션 추가
                    for (let i = 0; i <= 5; i++) {
@@ -113,7 +113,7 @@
             <div class="input-form-backgroud row">
                 <div class="input-form col-md-12 mx-auto">
                     <h4 class="mb-3" style="text-align: center; font-weight:bold;">Registration</h4>
-                    <form action="" method="" class="validation-form" novalidate onsubmit="return validateForm()">
+                    <form action="problem" method="post" class="validation-form" novalidate onsubmit="return validateForm()">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="Success" value="Success" checked>
                             <label class="form-check-label" for="Success">
