@@ -33,4 +33,14 @@ public class MainController {
     public String myProblem() {
         return "problem/myProblem";
     }
+
+    @RequestMapping("/problemInfo")
+    public String problemInfo() {
+        return "problem/problemInfo";
+    }
+
+    @RequestMapping("/introduce")
+    public String introduce() {
+        return "introduce";
+    }
 }
