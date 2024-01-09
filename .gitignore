@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### properties files ###
-src/main/**/application.properties
+*.properties
