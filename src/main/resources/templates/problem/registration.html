@@ -52,57 +52,74 @@
             background-color: #C0C0C0 !important;
             border-color: #C0C0C0 !important;
         }
+
+        #category {
+            border-radius: 20px;
+        }
     </style>
     <script>
-        $(document).ready(function() {
-           $('#difficulty, #level').hide();
+        $(document).ready(function () {
+            $('#tier, #level').hide();
 
-           $('#problemSite').change(function() {
-               if ($(this).val() === 'BOJ') {
-                   $('#difficulty').empty();
-
+            $('#problemSite').change(function () {
+                if ($(this).val() === 'BOJ') {
+                    $('#tier').empty();
                     // 티어 옵션 추가
-                    $('#difficulty').append(`<option value="Brozen">Brozen</option>`);
-                    $('#difficulty').append(`<option value="Sliver">Sliver</option>`);
-                    $('#difficulty').append(`<option value="Gold">Gold</option>`);
-                    $('#difficulty').append(`<option value="Platinum">Platinum</option>`);
-                    $('#difficulty').append(`<option value="Diamond">Diamond</option>`);
-                    $('#difficulty').append(`<option value="Ruby">Ruby</option>`);
+                    $('#tier').append(`<option value="Brozen">Brozen</option>`);
+                    $('#tier').append(`<option value="Sliver">Sliver</option>`);
+                    $('#tier').append(`<option value="Gold">Gold</option>`);
+                    $('#tier').append(`<option value="Platinum">Platinum</option>`);
+                    $('#tier').append(`<option value="Diamond">Diamond</option>`);
+                    $('#tier').append(`<option value="Ruby">Ruby</option>`);
 
-                   $('#difficulty, #level').show();
-               } else if ($(this).val() === 'SWEA') {
-                   $('#level').hide();
+                    $('#tier, #level').show();
+                } else if ($(this).val() === 'SWEA') {
+                    $('#level').hide();
 
-                   $('#difficulty').empty();
+                    $('#tier').empty();
 
-                   // D1부터 D8까지의 옵션 추가
-                   for (let i = 1; i <= 8; i++) {
-                       $('#difficulty').append(`<option value="D${i}">D${i}</option>`);
-                   }
+                    // D1부터 D8까지의 옵션 추가
+                    for (let i = 1; i <= 8; i++) {
+                        $('#tier').append(`<option value="D${i}">D${i}</option>`);
+                    }
 
-                   $('#difficulty').show();
-               } else if ($(this).val() === 'PGM') {
-                   $('#level').hide();
+                    $('#tier').show();
+                } else if ($(this).val() === 'PGM') {
+                    $('#level').hide();
 
-                   $('#difficulty').empty();
+                    $('#tier').empty();
 
-                   // Lv.0부터 Lv.5까지의 옵션 추가
-                   for (let i = 0; i <= 5; i++) {
-                       $('#difficulty').append(`<option value="Lv.{i}">Lv.${i}</option>`);
-                   }
+                    // Lv.0부터 Lv.5까지의 옵션 추가
+                    for (let i = 0; i <= 5; i++) {
+                        $('#tier').append(`<option value="Lv.{i}">Lv.${i}</option>`);
+                    }
 
-                   $('#difficulty').show();
-               }
-           });
+                    $('#tier').show();
+                }
+            });
 
-           var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
                 lineNumbers: true, // 라인 넘버 표시
                 mode: 'text/x-java', // Java 코드 모드 지정
                 theme: 'default' // 테마 설정
-           });
-       });
-    </script>
+            });
 
+            $('#problemSite, #tier ,#level').change(function () {
+                var problemSite = $('#problemSite').val();
+                var tier = $('#tier').val();
+                console.log(tier);
+                if (problemSite === 'BOJ') {
+                    var level = $('#level').val();
+
+                    var concatenatedValue = tier + level;
+
+                    $('#difficulty').val(concatenatedValue);
+                } else {
+                    $('#difficulty').val(tier);
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -113,23 +130,21 @@
             <div class="input-form-backgroud row">
                 <div class="input-form col-md-12 mx-auto">
                     <h4 class="mb-3" style="text-align: center; font-weight:bold;">Registration</h4>
-                    <form action="problem" method="post" class="validation-form" novalidate onsubmit="return validateForm()">
+                    <form action="problem" method="post" class="validation-form" novalidate
+                          onsubmit="return validateForm()">
+                        <input type="hidden" name="difficulty" id="difficulty">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="solved" id="Success" value="Success" checked>
+                            <input class="form-check-input" type="radio" name="solved" id="Success" value="Success"
+                                   checked>
                             <label class="form-check-label" for="Success">
                                 Success
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="solved" id="Referenced" value="Referenced">
+                            <input class="form-check-input" type="radio" name="solved" id="Referenced"
+                                   value="Referenced">
                             <label class="form-check-label" for="Referenced">
                                 Referenced Success
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline mt-3">
-                            <input class="form-check-input" type="radio" name="solved" id="Fail" value="Fail">
-                            <label class="form-check-label" for="Fail">
-                                Fail
                             </label>
                         </div>
                         <br>
@@ -145,8 +160,8 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-3 mt-3">
-                                <select id="problemSite" class="form-select" name="problemSite">
+                            <div class="col-md-4 mt-3">
+                                <select id="problemSite" name="problemSite" class="form-select">
                                     <option value="" disabled selected hidden>Site</option>
                                     <option value="BOJ">BOJ</option>
                                     <option value="SWEA">SWEA</option>
@@ -155,7 +170,7 @@
                             </div>
 
                             <div class="col-md-3 mt-3">
-                                <select id="difficulty" class="form-select">
+                                <select id="tier" name="tier" class="form-select">
                                 </select>
                             </div>
                             <div class="col-md-3 mt-3">
@@ -170,10 +185,16 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12 mt-3">
+                            <div class="col-md-10 mt-3">
                                 <input type="text" class="form-control" name="title" id="title" required
                                        autocomplete="off" placeholder="title">
                                 <div class="invalid-feedback">제목을 입력해주세요.</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 mt-3">
+                                <input type="text" class="form-control" name="category" id="category"
+                                       autocomplete="off" placeholder="ex. DP, BFS ...">
                             </div>
                         </div>
 
