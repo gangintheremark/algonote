@@ -1,6 +1,5 @@
 package com.algorithm.Algonote.controller;
 
-import com.algorithm.Algonote.dto.ProblemDTO;
 import com.algorithm.Algonote.model.ProblemEntity;
 import com.algorithm.Algonote.service.ProblemService;
 import jakarta.annotation.PostConstruct;
@@ -20,7 +19,7 @@ public class RegistController {
     private final ProblemService problemService;
 
     @PostMapping("/problem")
-    public String registProblem(@RequestBody ProblemEntity request) {
+    public String registProblem(ProblemEntity request) {
             // 로그인 체크 인터셉터 추가 필요
             problemService.addProblem(request);
             return "problem/success";
