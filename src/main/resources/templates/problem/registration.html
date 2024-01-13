@@ -91,7 +91,7 @@
 
                     // Lv.0부터 Lv.5까지의 옵션 추가
                     for (let i = 0; i <= 5; i++) {
-                        $('#tier').append(`<option value="Lv.{i}">Lv.${i}</option>`);
+                        $('#tier').append(`<option value="Lv.${i}">Lv.${i}</option>`);
                     }
 
                     $('#tier').show();
@@ -107,7 +107,6 @@
             $('#problemSite, #tier ,#level').change(function () {
                 var problemSite = $('#problemSite').val();
                 var tier = $('#tier').val();
-                console.log(tier);
                 if (problemSite === 'BOJ') {
                     var level = $('#level').val();
 
