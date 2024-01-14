@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>my Problems</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
 
     <style>
         ::-webkit-scrollbar {
@@ -40,43 +43,18 @@
             color: black;
         }
 
-        .stack {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 45rem;
-            width: 10rem;
-            border: 6px solid #DFEDD0;
-            border-top: none;
-            border-radius: 10px;
-            padding-top: 10px;
-            margin-bottom: 30px;
-            overflow: auto;
-        }
-
         .square {
-            width: 8rem;
-            min-height: 7rem;
-            max-height: 12rem;
+            width: 9rem;
+            min-height: 8rem;
+            max-height: 8rem;
             background-color: #F2F2F2;
             border-radius: 10px;
-            margin: 10px;
+            margin: 5px;
             overflow: auto;
-    word-wrap: break-word;
-        }
-
-        .queue {
-            display: flex;
-            flex-wrap: nowrap;
-            height: 10rem;
-            width: 37rem;
-            border: 6px solid #DFEDD0;
-            border-right: none;
-            border-left: none;
-            border-radius: 10px;
-            padding-top: 10px;
-            margin-bottom: 30px;
-            overflow: auto;
+            word-wrap: break-word;
+            flex: 0 0 16%; /* 20% 너비의 정사각형으로 배치 */
+            box-sizing: border-box;
+            margin-top: 15px !important;
         }
 
         .content {
@@ -88,6 +66,31 @@
             border: 1px solid #DFEDD0;
             border-radius: 20px;
         }
+
+        .success-circle {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-color: green;
+        border-radius: 50%;
+        float: right;
+        }
+
+        .referenced-circle {
+                display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        border-radius: 50%;
+        float: right;
+        }
+
+        .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+}
     </style>
 </head>
 
@@ -99,89 +102,34 @@
             <hr style="border: 2px solid #86AA75;">
             <ul class="list-group">
                 <li class="list-group-item active"><a href="#" class="menu">my Problems</a></li>
-                <li class="list-group-item"><a href="#" class="menu">my Stack</a></li>
-                <li class="list-group-item"><a href="#" class="menu">my Queue</a></li>
+                <li class="list-group-item"><a href="#" class="menu">Success</a></li>
+                <li class="list-group-item"><a href="#" class="menu">Referenced Success</a></li>
+                <li class="list-group-item"><a href="#" class="menu">Type of Problems</a></li>
             </ul>
         </aside>
         <div class="input-form-background col-md-9">
-            <div class="row mb-5">
-                <div class="col-md-3 ms-3 solved" style="text-align:center;">
-                    Success
-                </div>
-                <div class="col-md-6 ms-5 solved" style="text-align:center; margin-left:120px !important;">
-                    Referenced Success & Fail
-                </div>
-            </div>
+            <!-- 반복문 시작 -->
             <div class="row">
-                <div class="col-md-3 ms-5">
-                    <div class="stack">
-                        <div class="square">
-                            <div class="content">
-                                <img src="images/icon/java.png" width="auto" height="20"> <br>
-                                <span style="font-size: 0.8rem;">[BOJ] - Gold2</span> <br>
-                                섬나라
-                            </div>
-                        </div>
-                        <div class="square">
-                            <div class="content">
-                                <img src="images/icon/python.png" width="auto" height="20"> <br>
-                                <span style="font-size: 0.8rem;">[PGM] - Lv.2</span> <br>
-                                최대값 구하기
-                            </div>
-                        </div>
-                        <div class="square">
-                            <div class="content">
-                                <img src="" width="auto" height="20"> <br>
-                                <span style="font-size: 0.8rem;"></span> <br>
-                            </div>
-                        </div>
-                        <div class="square">
-                            <div class="content">
-                                <img src="" width="auto" height="20"> <br>
-                                <span style="font-size: 0.8rem;"></span> <br>
-                            </div>
-                        </div>
-                        <div class="square">
-                            <div class="content">
-                                <img src="images/icon/c++.png" width="auto" height="20"> <br>
-                                <span style="font-size: 0.8rem;">[PGM] - Lv.2</span> <br>
-                                최대값 구하기
-                            </div>
-                        </div>
-                        <a href="#" class="mb-2" style="text-decoration: none;">더보기</a>
-                    </div>
-                </div>
-                <div class="col-md-3 ms-3">
-                    <div class="queue mb-3">
-                        <div class="square">
-                            <div class="content">
-                                <img src="images/icon/java.png" width="auto" height="20"> <br>
-                                <span style="font-size: 0.8rem;">[BOJ] - Gold2</span> <br>
-                                섬나라
-                            </div>
-                        </div>
-                        <div class="square">
-                            <div class="content">
-                                <img src="images/icon/python.png" width="auto" height="20"> <br>
-                                <span style="font-size: 0.8rem;">[PGM] - Lv.2</span> <br>
-                                최대값 구하기
-                            </div>
-                        </div>
-                        <div class="square">
-                            <div class="content">
-                                <img src="" width="auto" height="20"> <br>
-                                <span style="font-size: 0.8rem;"></span> <br>
-                            </div>
-                        </div>
-                        <div class="square">
-                            <div class="content">
-                                <img src="" width="auto" height="20"> <br>
-                                <span style="font-size: 0.8rem;"></span> <br>
-                            </div>
+                <div th:each="problem, iterStat : ${problems}" class="square">
+                    <div class="content">
+                        <img th:src="@{'images/icon/' + ${problem.language} + '.png'}" width="auto" height="20">
+                        <span th:if="${problem.solved eq 'Success'}">
+                <div class="success-circle"></div>
+            </span>
+                        <span th:if="${problem.solved eq 'Referenced'}">
+                <div class="referenced-circle"></div>
+            </span>
+                        <br>
+                        <div class="mt-2">
+                            <span style="font-size: 0.9rem;" th:text="'['+ ${problem.problemSite} + '] '"></span>
+                            <span style="font-size: 0.8rem;" th:text="${problem.difficulty}"></span> <br>
+                            <span th:text="${problem.title}"> </span>
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>
