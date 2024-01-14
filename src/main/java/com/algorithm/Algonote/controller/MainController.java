@@ -14,9 +14,9 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping("/memberForm")
+    @RequestMapping("/member/signup")
     public String memberForm() {
-        return "member/join";
+        return "member/signup";
     }
 
     @RequestMapping("/loginForm")
@@ -27,16 +27,6 @@ public class MainController {
     @RequestMapping("/registForm")
     public String registForm() {
         return "problem/registration";
-    }
-
-    @RequestMapping("/myProblem")
-    public String myProblem() {
-        return "problem/myProblem";
-    }
-
-    @RequestMapping("/problemInfo")
-    public String problemInfo() {
-        return "problem/problemInfo";
     }
 
     @RequestMapping("/introduce")
