@@ -23,6 +23,7 @@ public class RegistController {
     @PostMapping("/problem")
     public String registProblem(ProblemEntity request) {
             // 로그인 체크 인터셉터 추가 필요
+            request.setUserid("gang"); // [임시]
             problemService.addProblem(request);
             return "problem/success";
     }
