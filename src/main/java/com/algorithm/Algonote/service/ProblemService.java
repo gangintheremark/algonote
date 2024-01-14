@@ -6,12 +6,22 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class ProblemService {
     private final ProblemRepository problemRepository;
 
+    public List<ProblemEntity> findProblems(String userid) {
+        List<ProblemEntity> problems = problemRepository.findByUserid(userid);
+
+        return problems;
+    }
+
     public void addProblem(ProblemEntity request) {
         problemRepository.save(request);
     }
+
+
 }
