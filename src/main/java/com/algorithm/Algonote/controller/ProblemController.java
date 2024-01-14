@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,7 +25,15 @@ public class ProblemController {
 
         List<ProblemEntity> problems = problemService.findProblems(userid);
         m.addAttribute("problems", problems);
-        System.out.println("문제" + problems);
+
         return "problem/myProblem";
+    }
+
+    @RequestMapping("/problemInfo")
+    public String problemInfo(@RequestParam("problemNum") int problemNum, Model m) {
+        ProblemEntity problem = problemService.findProblem(problemNum);
+        m.addAttribute("problem", problem);
+        System.out.println(problem);
+        return "problem/problemInfo";
     }
 }
