@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 
 @Getter
 @Setter
@@ -20,10 +21,11 @@ public class UserCreateForm {
     private String password2;
 
     @NotEmpty(message = "이메일은 필수항목입니다.")
-    @Email
-    private String email;
+    private String email1;
+
+    @NotEmpty(message = "이메일은 필수항목입니다.")
+    private String email2;
 
     @NotEmpty(message = "닉네임은 필수항목입니다.")
-    @Email
     private String nickname;
 }

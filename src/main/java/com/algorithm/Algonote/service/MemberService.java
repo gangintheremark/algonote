@@ -4,7 +4,6 @@ package com.algorithm.Algonote.service;
 import com.algorithm.Algonote.model.MemberEntity;
 import com.algorithm.Algonote.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +20,7 @@ public class MemberService {
         member.setNickname(nickname);
         member.setPassword(passwordEncoder.encode(password));
         this.memberRepository.save(member);
+
         return member;
     }
 

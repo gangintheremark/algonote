@@ -18,24 +18,27 @@ public class MemberController {
 
     @GetMapping("/signup")
     public String signup(UserCreateForm userCreateForm){
-        return "signup_form";
+        return "member/join";
     }
 
     @PostMapping("/signup")
     public String signup(@Valid UserCreateForm userCreateForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "signup_form";
+            System.out.println("error");
+            return "member/join";
         }
 
         if (!userCreateForm.getPassword1().equals(userCreateForm.getPassword2())) {
             bindingResult.rejectValue("password2", "passwordInCorrect",
                 "2개의 패스워드가 일치하지 않습니다.");
-            return "signup_form";
+            return "member/join";
         }
         memberService.create(userCreateForm.getMemberId(),
-            userCreateForm.getEmail(), userCreateForm.getPassword1(),userCreateForm.getNickname());
+            userCreateForm.getEmail1()+"@"+userCreateForm.getEmail2(), userCreateForm.getPassword1(),userCreateForm.getNickname());
 
-        return "redirect:/";
+        System.out.println("----------------------"+userCreateForm.getMemberId());
+        return "redirect:/main";
+
     }
 
 }
