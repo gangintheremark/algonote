@@ -27,7 +27,7 @@ public class QProblemEntity extends EntityPathBase<ProblemEntity> {
 
     public final StringPath language = createString("language");
 
-    public final NumberPath<Long> problemNum = createNumber("problemNum", Long.class);
+    public final NumberPath<Integer> problemNum = createNumber("problemNum", Integer.class);
 
     public final StringPath problemSite = createString("problemSite");
 
