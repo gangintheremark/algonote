@@ -19,6 +19,12 @@ public class ProblemService {
         return problems;
     }
 
+    public ProblemEntity findProblem(int problemNum) {
+        ProblemEntity problem = problemRepository.findById(problemNum).orElseThrow();
+
+        return problem;
+    }
+
     public void addProblem(ProblemEntity request) {
         problemRepository.save(request);
     }
