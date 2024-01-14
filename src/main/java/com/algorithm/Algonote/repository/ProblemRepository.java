@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface ProblemRepository  extends JpaRepository <ProblemEntity, Long> {
+public interface ProblemRepository  extends JpaRepository <ProblemEntity, Integer> {
     List<ProblemEntity> findByUserid(String userid);
 }
