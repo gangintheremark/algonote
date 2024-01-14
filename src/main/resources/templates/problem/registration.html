@@ -122,8 +122,8 @@
 
              $("#add").click(function(event){
                 event.preventDefault();
-                var category = $(".category").val();
-                $(".categories").append(`<div class="list"><li>${category}</li></div>`);
+                $(".categories").append(`<li class="mx-2"> <input type="text" class="form-control mt-3" name="category"/>
+                                </li>`);
             })
         });
     </script>
@@ -199,15 +199,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <ul>
+                            <ul class="categories">
                                 <li>
                                     <input type="text" class="form-control mt-3" name="category" placeholder="ex. DFS,DP..."/>
                                 </li>
                                 <li>
-                                    <input type="text" class="form-control mt-3 mx-2" name="category"  placeholder="ex. DFS,DP..."/>
-                                </li>
-                                <li>
-                                    <input type="text" class="form-control mt-3 mx-3" name="category"  placeholder="ex. DFS,DP..."/>
+                                     <button class="btn btn-primary mt-3 mx-2" id="add">+</button>
                                 </li>
                             </ul>
                         </div>
