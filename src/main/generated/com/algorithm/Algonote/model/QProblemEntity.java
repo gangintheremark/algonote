@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -19,7 +20,7 @@ public class QProblemEntity extends EntityPathBase<ProblemEntity> {
 
     public static final QProblemEntity problemEntity = new QProblemEntity("problemEntity");
 
-    public final StringPath category = createString("category");
+    public final ListPath<String, StringPath> category = this.<String, StringPath>createList("category", String.class, StringPath.class, PathInits.DIRECT2);
 
     public final StringPath code = createString("code");
 
@@ -27,7 +28,7 @@ public class QProblemEntity extends EntityPathBase<ProblemEntity> {
 
     public final StringPath language = createString("language");
 
-    public final NumberPath<Long> problemNum = createNumber("problemNum", Long.class);
+    public final NumberPath<Integer> problemNum = createNumber("problemNum", Integer.class);
 
     public final StringPath problemSite = createString("problemSite");
 
