@@ -53,8 +53,10 @@
             border-color: #C0C0C0 !important;
         }
 
-        #category {
-            border-radius: 20px;
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
         }
     </style>
     <script>
@@ -99,9 +101,9 @@
             });
 
             var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-                lineNumbers: true, // 라인 넘버 표시
-                mode: 'text/x-java', // Java 코드 모드 지정
-                theme: 'default' // 테마 설정
+                lineNumbers: true,
+                mode: 'text/x-java',
+                theme: 'default'
             });
 
             $('#problemSite, #tier ,#level').change(function () {
@@ -117,6 +119,12 @@
                     $('#difficulty').val(tier);
                 }
             });
+
+             $("#add").click(function(event){
+                event.preventDefault();
+                $(".categories").append(`<li class="mx-2"> <input type="text" class="form-control mt-3" name="category"/>
+                                </li>`);
+            })
         });
     </script>
 </head>
@@ -129,7 +137,7 @@
             <div class="input-form-backgroud row">
                 <div class="input-form col-md-12 mx-auto">
                     <h4 class="mb-3" style="text-align: center; font-weight:bold;">Registration</h4>
-                    <form action="problem" method="post" class="validation-form" novalidate
+                    <form action="problem" method="get" class="validation-form" novalidate
                           onsubmit="return validateForm()">
                         <input type="hidden" name="difficulty" id="difficulty">
                         <div class="form-check form-check-inline">
@@ -191,10 +199,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2 mt-3">
-                                <input type="text" class="form-control" name="category" id="category"
-                                       autocomplete="off" placeholder="ex. DP, BFS ...">
-                            </div>
+                            <ul class="categories">
+                                <li>
+                                    <input type="text" class="form-control mt-3" name="category" placeholder="ex. DFS,DP..."/>
+                                </li>
+                                <li>
+                                     <button class="btn btn-primary mt-3 mx-2" id="add">+</button>
+                                </li>
+                            </ul>
                         </div>
 
                         <div class="row">
@@ -202,16 +214,17 @@
                                 <textarea id="code" name="code" cols="80" style="white-space: pre-wrap;"></textarea>
                             </div>
                             <div class="col-md-6 mt-3">
-                                <textarea class="form-control" id="text" name="text" rows="12" cols="80" style="white-space: pre-wrap;"></textarea>
+                                <textarea class="form-control" id="text" name="text" rows="12" cols="80"
+                                          style="white-space: pre-wrap;"></textarea>
                             </div>
                         </div>
 
                         <div style="text-align: center;">
                             <button class="btn btn-primary mt-3" type="submit">OK</button>
                             <button class="btn btn-primary deleteBtn mt-3" type="reset"
-                                    style="text-align: center;">CANCEL</button>
+                                    style="text-align: center;">CANCEL
+                            </button>
                         </div>
-
                     </form>
                 </div>
             </div>
