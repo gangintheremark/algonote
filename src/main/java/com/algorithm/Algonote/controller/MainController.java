@@ -29,11 +29,6 @@ public class MainController {
         return "problem/registration";
     }
 
-    @RequestMapping("/problemInfo")
-    public String problemInfo() {
-        return "problem/problemInfo";
-    }
-
     @RequestMapping("/introduce")
     public String introduce() {
         return "introduce";
