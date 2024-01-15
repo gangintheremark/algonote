@@ -23,6 +23,9 @@ public class Securityconfig {
             .headers((headers) -> headers
                 .addHeaderWriter(new XFrameOptionsHeaderWriter(
                     XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
+            .formLogin((formLogin) -> formLogin
+                .loginPage("/member/login")
+                .defaultSuccessUrl("/main"))
         ;
         return http.build();
     }

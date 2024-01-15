@@ -36,9 +36,12 @@ public class MemberController {
         memberService.create(userCreateForm.getMemberId(),
             userCreateForm.getEmail1()+"@"+userCreateForm.getEmail2(), userCreateForm.getPassword1(),userCreateForm.getNickname());
 
-        System.out.println("----------------------"+userCreateForm.getMemberId());
         return "redirect:/main";
+    }
 
+    @GetMapping("/login")
+    public String login(){
+        return "login_form";
     }
 
 }
