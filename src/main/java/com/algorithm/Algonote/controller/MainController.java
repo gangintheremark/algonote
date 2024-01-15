@@ -19,7 +19,7 @@ public class MainController {
         return "member/signup";
     }
 
-    @RequestMapping("/loginForm")
+    @RequestMapping("/member/login")
     public String loginForm() {
         return "member/login";
     }
