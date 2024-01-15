@@ -33,7 +33,25 @@ public class ProblemController {
     public String problemInfo(@RequestParam("problemNum") int problemNum, Model m) {
         ProblemEntity problem = problemService.findProblem(problemNum);
         m.addAttribute("problem", problem);
-        System.out.println(problem);
+
         return "problem/problemInfo";
+    }
+
+    @RequestMapping("/mySuccess")
+    public String success(HttpSession session, Model m) {
+        // 세션에서 로그인 유저 정보 가져오기
+        String userid = "gang"; // [임시]
+        List<ProblemEntity> problems = problemService.findSolved(userid, "Success");
+        m.addAttribute("problems", problems);
+        return "problem/mySuccess";
+    }
+
+    @RequestMapping("/myReferenced")
+    public String referenced(HttpSession session, Model m) {
+        // 세션에서 로그인 유저 정보 가져오기
+        String userid = "gang"; // [임시]
+        List<ProblemEntity> problems = problemService.findSolved(userid, "Referenced");
+        m.addAttribute("problems", problems);
+        return "problem/myReferenced";
     }
 }

@@ -29,5 +29,9 @@ public class ProblemService {
         problemRepository.save(request);
     }
 
+    public List<ProblemEntity> findSolved(String userid, String solved) {
+        List<ProblemEntity> problems = problemRepository.findByUseridAndSolved(userid, solved);
 
+        return problems;
+    }
 }
