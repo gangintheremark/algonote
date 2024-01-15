@@ -24,12 +24,15 @@ public class MemberSecurityService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
         Optional<MemberEntity> _member = this.memberRepository.findByMemberId(memberId);
+        System.out.println(_member);
+
         if(_member.isEmpty()){
             throw new UsernameNotFoundException("사용자를 찾을 수 없습니다");
         }
 
         MemberEntity member = _member.get();
         List<GrantedAuthority> authorities = new ArrayList<>();
+
         if("admin".equals(memberId)){
             authorities.add(new SimpleGrantedAuthority(MemberRole.AdMIN.getValue()));
         }else{
