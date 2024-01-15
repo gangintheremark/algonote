@@ -104,9 +104,9 @@
         <aside class="col-md-3 me-5" style="width: 20%;">
             <hr style="border: 2px solid #86AA75;">
             <ul class="list-group">
-                <li class="list-group-item active"><a href="#" class="menu">my Problems</a></li>
-                <li class="list-group-item"><a href="#" class="menu">Success</a></li>
-                <li class="list-group-item"><a href="#" class="menu">Referenced Success</a></li>
+                <li class="list-group-item active"><a href="problem" class="menu">my Problems</a></li>
+                <li class="list-group-item"><a href="mySuccess" class="menu">Success</a></li>
+                <li class="list-group-item"><a href="myReferenced" class="menu">Referenced Success</a></li>
                 <li class="list-group-item"><a href="#" class="menu">Type of Problems</a></li>
             </ul>
         </aside>
@@ -115,21 +115,21 @@
             <div class="row">
                 <div th:each="problem, iterStat : ${problems}" class="square">
                     <a th:href="@{'problemInfo?problemNum=' + ${problem.problemNum}}" class="no-deco">
-                    <div class="content">
-                        <img th:src="@{'images/icon/' + ${problem.language} + '.png'}" width="auto" height="20">
-                        <span th:if="${problem.solved eq 'Success'}">
+                        <div class="content">
+                            <img th:src="@{'images/icon/' + ${problem.language} + '.png'}" width="auto" height="20">
+                            <span th:if="${problem.solved eq 'Success'}">
                             <div class="success-circle"></div>
                         </span>
-                        <span th:if="${problem.solved eq 'Referenced'}">
+                            <span th:if="${problem.solved eq 'Referenced'}">
                             <div class="referenced-circle"></div>
                         </span>
-                        <br>
-                        <div class="mt-2">
-                            <span style="font-size: 0.9rem;" th:text="'['+ ${problem.problemSite} + '] '"></span>
-                            <span style="font-size: 0.8rem; color:rgb(73, 72, 72)" th:text="${problem.difficulty}"></span> <br>
-                            <span th:text="${problem.title}"> </span>
+                            <br>
+                            <div class="mt-2">
+                                <span style="font-size: 0.9rem;" th:text="'['+ ${problem.problemSite} + '] '"></span>
+                                <span style="font-size: 0.8rem; color:rgb(73, 72, 72)" th:text="${problem.difficulty}"></span> <br>
+                                <span style="font-size: 0.9rem;" th:text="${problem.title}"> </span>
+                            </div>
                         </div>
-                    </div>
                     </a>
                 </div>
             </div>
