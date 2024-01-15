@@ -28,6 +28,10 @@ public class Securityconfig {
             .formLogin((formLogin) -> formLogin
                 .loginPage("/member/login")
                 .defaultSuccessUrl("/main"))
+            .logout((logout) -> logout
+                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                .logoutSuccessUrl("/main")
+                .invalidateHttpSession(true))
         ;
         return http.build();
     }
