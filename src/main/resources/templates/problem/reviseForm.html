@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>알고리즘 문제 수정</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/python/python.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/clike/clike.min.js"></script>
+	<style>
+		body {
+			margin: 0;
+			position: relative;
+		}
+
+		.input-form {
+			padding: 32px !important;
+			background: #fff;
+			-moz-border-radius: 10px;
+			border-radius: 20px;
+			-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+			box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+		}
+
+		.container {
+			min-width: 1400px;
+		}
+
+		.example {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			min-height: 200px;
+			background: rgba(90, 138, 67, 0.73);
+		}
+
+		.example2 {
+			box-sizing: border-box;
+			position: absolute;
+			min-height: 500px;
+			top: 100px;
+		}
+
+		.btn {
+			background-color: #86AA75 !important;
+			border-color: #86AA75 !important;
+		}
+
+		.deleteBtn {
+			background-color: #C0C0C0 !important;
+			border-color: #C0C0C0 !important;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+			display: flex;
+		}
+	</style>
+	<script>
+		$(document).ready(function () {
+
+			var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+				lineNumbers: true,
+				mode: 'text/x-java',
+				theme: 'default'
+			});
+
+			$('#problemSite, #tier ,#level').change(function () {
+				var problemSite = $('#problemSite').val();
+				var tier = $('#tier').val();
+				if (problemSite === 'BOJ') {
+					var level = $('#level').val();
+
+					var concatenatedValue = tier + level;
+
+					$('#difficulty').val(concatenatedValue);
+				} else {
+					$('#difficulty').val(tier);
+				}
+			});
+
+			$("#add").click(function (event) {
+				event.preventDefault();
+				$(".categories").append(`<li class="mx-2"> <input type="text" class="form-control mt-3" name="category" autocomplete="off" />
+                                </li>`);
+                                
+			})
+
+			$("#minus").click(function (event) {
+				event.preventDefault();
+				$(".categories li:last-child").prev().remove();
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div th:include="'/common/nav'"></div>
+	<div class="example" style="font-family: 'SUITE-Regular';">
+		<div class="example2 mt-5">
+			<div class="container">
+				<div class="input-form-backgroud row">
+					<div class="input-form col-md-12 mx-auto">
+						<h4 class="mb-3" style="text-align: center; font-weight:bold;">Modification</h4>
+						<form action="modify" method="put" class="validation-form" novalidate
+							onsubmit="return validateForm()">
+							<input type="hidden" name="difficulty" id="difficulty">
+							<input type="hidden" name="problemNum" th:value="${problem.problemNum}">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="solved" id="Success" value="Success"
+									th:checked="${problem.solved == 'Success'}">
+								<label class="form-check-label" for="Success">
+									Success
+								</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="solved" id="Referenced"
+									value="Referenced" th:checked="${problem.solved == 'Referenced'}">
+								<label class="form-check-label" for="Referenced">
+									Referenced Success
+								</label>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-4 mt-3">
+									<select id="language" name="language" class="form-select">
+										<option value="Java" th:seleced="${problem.solved == 'Java'}">Java</option>
+										<option value="Python" th:seleced="${problem.solved == 'Python'}">Python
+										</option>
+										<option value="C++" th:seleced="${problem.solved == 'C++'}">C++</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4 mt-3">
+									<input class="form-control" th:value="${problem.problemSite}" disabled>
+								</div>
+
+								<div class="col-md-3 mt-3">
+									<input class="form-control" th:value="${problem.difficulty}" disabled>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-10 mt-3">
+									<input type="text" class="form-control" name="title" id="title" required
+										autocomplete="off" th:value="${problem.title}">
+									<div class="invalid-feedback">제목을 입력해주세요.</div>
+								</div>
+							</div>
+							<div class="row">
+								<ul class="categories">
+									<li>
+									<li th:each="category : ${problem.category}" class="me-2">
+										<input type="text" class="form-control mt-3" name="category" autocomplete="off"
+											th:value="${category}" />
+
+									</li>
+									</li>
+									<li>
+										<button class="btn btn-primary mt-3 mx-2" id="add">+</button>
+										<button class="btn btn-primary mt-3" id="minus">-</button>
+									</li>
+								</ul>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 mt-3">
+									<textarea id="code" name="code" cols="80" style="white-space: pre-wrap;" th:text="${problem.code}"></textarea>
+								</div>
+								<div class="col-md-6 mt-3">
+									<textarea class="form-control" id="text" name="text" rows="12" cols="80" th:text="${problem.text}"
+										style="white-space: pre-wrap;"></textarea>
+								</div>
+							</div>
+
+							<div style="text-align: center;">
+								<button class="btn btn-primary mt-3" type="submit">OK</button>
+								<button class="btn btn-primary deleteBtn mt-3" type="reset"
+									style="text-align: center;">CANCEL
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+
+</html>
