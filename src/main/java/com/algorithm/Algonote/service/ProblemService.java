@@ -38,4 +38,8 @@ public class ProblemService {
         List<ProblemEntity> problems = problemRepository.findByUseridAndCategory(userid, category);
         return problems;
     }
+    
+    public void modify(ProblemEntity request) {
+    	problemRepository.save(request);
+    }
 }
