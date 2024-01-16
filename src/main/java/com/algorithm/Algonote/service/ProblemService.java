@@ -31,7 +31,11 @@ public class ProblemService {
 
     public List<ProblemEntity> findSolved(String userid, String solved) {
         List<ProblemEntity> problems = problemRepository.findByUseridAndSolved(userid, solved);
-
+        return problems;
+    }
+    
+    public List<ProblemEntity> findCategory(String userid, String category) {
+        List<ProblemEntity> problems = problemRepository.findByUseridAndCategory(userid, category);
         return problems;
     }
 }
