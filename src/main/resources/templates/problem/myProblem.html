@@ -2,142 +2,143 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>my Problems</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
+	<meta charset="UTF-8">
+	<title>my Problems</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
 
-    <style>
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
+	<style>
+		::-webkit-scrollbar {
+			width: 5px;
+		}
 
-        ::-webkit-scrollbar-track {
-            background-color: #f1f1f1;
-        }
+		::-webkit-scrollbar-track {
+			background-color: #f1f1f1;
+		}
 
-        ::-webkit-scrollbar-thumb {
-            background-color: rgb(100, 100, 100);
-            border-radius: 4px;
-        }
+		::-webkit-scrollbar-thumb {
+			background-color: rgb(100, 100, 100);
+			border-radius: 4px;
+		}
 
-        .menu {
-            text-decoration: none;
-            color: rgb(145, 145, 145);
-        }
+		.menu {
+			text-decoration: none;
+			color: rgb(145, 145, 145);
+		}
 
-        .list-group-item {
-            border: none !important;
-        }
+		.list-group-item {
+			border: none !important;
+		}
 
-        .list-group-item.active .menu {
-            color: black;
-        }
+		.list-group-item.active .menu {
+			color: black;
+		}
 
-        .list-group-item.active {
-            background-color: white !important;
-            border: none;
-            color: black;
-        }
+		.list-group-item.active {
+			background-color: white !important;
+			border: none;
+			color: black;
+		}
 
-        .square {
-            width: 9rem;
-            min-height: 8rem;
-            max-height: 8rem;
-            background-color: #F2F2F2;
-            border-radius: 10px;
-            margin: 5px;
-            overflow: auto;
-            word-wrap: break-word;
-            flex: 0 0 16%; /* 20% 너비의 정사각형으로 배치 */
-            box-sizing: border-box;
-            margin-top: 15px !important;
-        }
+		.square {
+			width: 9rem;
+			min-height: 8rem;
+			max-height: 8rem;
+			background-color: #F2F2F2;
+			border-radius: 10px;
+			margin: 5px;
+			overflow: auto;
+			word-wrap: break-word;
+			flex: 0 0 16%;
+			/* 20% 너비의 정사각형으로 배치 */
+			box-sizing: border-box;
+			margin-top: 15px !important;
+		}
 
-        .content {
-            padding: 20px;
-        }
+		.content {
+			padding: 20px;
+		}
 
-        .solved {
-            background-color: #DFEDD0;
-            border: 1px solid #DFEDD0;
-            border-radius: 20px;
-        }
+		.solved {
+			background-color: #DFEDD0;
+			border: 1px solid #DFEDD0;
+			border-radius: 20px;
+		}
 
-        .success-circle {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        background-color: green;
-        border-radius: 50%;
-        float: right;
-        }
+		.success-circle {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			background-color: green;
+			border-radius: 50%;
+			float: right;
+		}
 
-        .referenced-circle {
-                display: inline-block;
-        width: 10px;
-        height: 10px;
-        background-color: red;
-        border-radius: 50%;
-        float: right;
-        }
+		.referenced-circle {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			background-color: red;
+			border-radius: 50%;
+			float: right;
+		}
 
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-        }
+		.row {
+			display: flex;
+			flex-wrap: wrap;
+		}
 
-        .no-deco {
-            color:black !important;
-            text-decoration: none !important;
-        }
-    </style>
+		.no-deco {
+			color: black !important;
+			text-decoration: none !important;
+		}
+	</style>
 </head>
 
 <body>
-<div th:include="'/common/nav'"></div>
-<div class="container mt-5">
-    <div class="row">
-        <aside class="col-md-3 me-5" style="width: 20%;">
-            <hr style="border: 2px solid #86AA75;">
-            <ul class="list-group">
-                <li class="list-group-item active"><a href="problem" class="menu">my Problems</a></li>
-                <li class="list-group-item"><a href="mySuccess" class="menu">Success</a></li>
-                <li class="list-group-item"><a href="myReferenced" class="menu">Referenced Success</a></li>
-                <li class="list-group-item"><a href="#" class="menu">Type of Problems</a></li>
-            </ul>
-        </aside>
-        <div class="input-form-background col-md-9">
-            <!-- 반복문 시작 -->
-            <div class="row">
-                <div th:each="problem, iterStat : ${problems}" class="square">
-                    <a th:href="@{'problemInfo?problemNum=' + ${problem.problemNum}}" class="no-deco">
-                        <div class="content">
-                            <img th:src="@{'images/icon/' + ${problem.language} + '.png'}" width="auto" height="20">
-                            <span th:if="${problem.solved eq 'Success'}">
-                            <div class="success-circle"></div>
-                        </span>
-                            <span th:if="${problem.solved eq 'Referenced'}">
-                            <div class="referenced-circle"></div>
-                        </span>
-                            <br>
-                            <div class="mt-2">
-                                <span style="font-size: 0.9rem;" th:text="'['+ ${problem.problemSite} + '] '"></span>
-                                <span style="font-size: 0.8rem; color:rgb(73, 72, 72)" th:text="${problem.difficulty}"></span> <br>
-                                <span style="font-size: 0.9rem;" th:text="${problem.title}"> </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-</div>
+	<div th:include="'/common/nav'"></div>
+	<div class="container mt-5">
+		<div class="row">
+			<aside class="col-md-3 me-5" style="width: 20%;">
+				<hr style="border: 2px solid #86AA75;">
+				<ul class="list-group">
+					<li class="list-group-item active"><a href="problem" class="menu">my Problems</a></li>
+					<li class="list-group-item"><a href="mySuccess" class="menu">Success</a></li>
+					<li class="list-group-item"><a href="myReferenced" class="menu">Referenced Success</a></li>
+					<li class="list-group-item"><a href="categoryList" class="menu">Type of Problems</a></li>
+				</ul>
+			</aside>
+			<div class="input-form-background col-md-9">
+				<!-- 반복문 시작 -->
+				<div class="row">
+					<div th:each="problem, iterStat : ${problems}" class="square">
+						<a th:href="@{'problemInfo?problemNum=' + ${problem.problemNum}}" class="no-deco">
+							<div class="content">
+								<img th:src="@{'images/icon/' + ${problem.language} + '.png'}" width="auto" height="20">
+								<span th:if="${problem.solved eq 'Success'}">
+									<div class="success-circle"></div>
+								</span>
+								<span th:if="${problem.solved eq 'Referenced'}">
+									<div class="referenced-circle"></div>
+								</span>
+								<br>
+								<div class="mt-2">
+									<span style="font-size: 0.9rem;"
+										th:text="'['+ ${problem.problemSite} + '] '"></span>
+									<span style="font-size: 0.8rem; color:rgb(73, 72, 72)"
+										th:text="${problem.difficulty}"></span> <br>
+									<span th:text="${problem.title}"> </span>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 </body>
