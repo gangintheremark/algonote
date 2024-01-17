@@ -68,30 +68,24 @@
 				theme: 'default'
 			});
 
-			$('#problemSite, #tier ,#level').change(function () {
-				var problemSite = $('#problemSite').val();
-				var tier = $('#tier').val();
-				if (problemSite === 'BOJ') {
-					var level = $('#level').val();
-
-					var concatenatedValue = tier + level;
-
-					$('#difficulty').val(concatenatedValue);
-				} else {
-					$('#difficulty').val(tier);
-				}
-			});
-
 			$("#add").click(function (event) {
 				event.preventDefault();
 				$(".categories").append(`<li class="mx-2"> <input type="text" class="form-control mt-3" name="category" autocomplete="off" />
-                                </li>`);
-                                
+                                </li>`);                
 			})
 
 			$("#minus").click(function (event) {
 				event.preventDefault();
 				$(".categories li:last-child").prev().remove();
+			});
+			
+			$("#editBtn").click(function (){
+				var title
+				var text
+				var code
+				var solved
+				var language
+				var category 
 			});
 		});
 	</script>
@@ -105,7 +99,7 @@
 				<div class="input-form-backgroud row">
 					<div class="input-form col-md-12 mx-auto">
 						<h4 class="mb-3" style="text-align: center; font-weight:bold;">Modification</h4>
-						<form action="modify" method="put" class="validation-form" novalidate
+						<form th:action="@{'modify/'+${problem.problemNum}}" method="put" class="validation-form" novalidate
 							onsubmit="return validateForm()">
 							<input type="hidden" name="difficulty" id="difficulty">
 							<input type="hidden" name="problemNum" th:value="${problem.problemNum}">
@@ -179,7 +173,7 @@
 							</div>
 
 							<div style="text-align: center;">
-								<button class="btn btn-primary mt-3" type="submit">OK</button>
+								<button class="btn btn-primary mt-3" type="button" id="editBtn">OK</button>
 								<button class="btn btn-primary deleteBtn mt-3" type="reset"
 									style="text-align: center;">CANCEL
 								</button>
