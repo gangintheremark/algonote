@@ -98,7 +98,7 @@
 								&nbsp; [<span th:text="${problem.problemSite}"></span>] <span
                             th:text="${problem.difficulty}"></span> - <span
                             th:text="${problem.title}"></span></span> &nbsp; <br />
-                        <!-- <a href="#" class="aTag">삭제</a> &nbsp; <a href="#" class="aTag">수정</a> -->
+                        <a th:href="@{'goModify?problemNum=' + ${problem.problemNum}}" class="aTag">수정</a> &nbsp; <a href="#" class="aTag">삭제</a> 
                         <div class="mt-2">
                             <th:block th:each="type : ${problem.category}">
                                 <span class="algo" th:text="'#' + ${type}"></span> &nbsp;

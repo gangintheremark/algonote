@@ -7,10 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -27,4 +30,14 @@ public class RegistController {
             problemService.addProblem(request);
             return "problem/success";
     }
+    
+	
+	@PutMapping("/modify")
+	@ResponseBody
+	public void modify(ProblemEntity request) {
+        // 로그인 체크 인터셉터 추가 필요
+        request.setUserid("gang"); // [임시]
+        System.out.println("요청: " + request);
+        problemService.modify(request);
+	}
 }
