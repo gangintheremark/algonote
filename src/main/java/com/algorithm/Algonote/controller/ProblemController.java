@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,11 +23,9 @@ public class ProblemController {
 	private final ProblemService problemService;
 
 	@GetMapping("/problem")
-	public String problem(HttpSession session, Model m) {
-		// 세션에서 로그인 유저 정보 가져오기
-		String userid = "gang"; // [임시]
-
-		List<ProblemEntity> problems = problemService.findProblems(userid);
+	public String problem(HttpSession session, Model m, Principal principal) {
+		String memberId = principal.getName();
+		List<ProblemEntity> problems = problemService.findProblems(memberId);
 		m.addAttribute("problems", problems);
 
 		return "problem/myProblem";
@@ -41,19 +40,17 @@ public class ProblemController {
 	}
 
 	@RequestMapping("/mySuccess")
-	public String success(HttpSession session, Model m) {
-		// 세션에서 로그인 유저 정보 가져오기
-		String userid = "gang"; // [임시]
-		List<ProblemEntity> problems = problemService.findSolved(userid, "Success");
+	public String success(HttpSession session, Model m, Principal principal) {
+		String memberId = principal.getName();
+		List<ProblemEntity> problems = problemService.findSolved(memberId, "Success");
 		m.addAttribute("problems", problems);
 		return "problem/mySuccess";
 	}
 
 	@RequestMapping("/myReferenced")
-	public String referenced(HttpSession session, Model m) {
-		// 세션에서 로그인 유저 정보 가져오기
-		String userid = "gang"; // [임시]
-		List<ProblemEntity> problems = problemService.findSolved(userid, "Referenced");
+	public String referenced(HttpSession session, Model m, Principal principal) {
+		String memberId = principal.getName();
+		List<ProblemEntity> problems = problemService.findSolved(memberId, "Referenced");
 		m.addAttribute("problems", problems);
 		return "problem/myReferenced";
 	}
@@ -61,18 +58,17 @@ public class ProblemController {
 	@RequestMapping("/categoryList")
 	public String category(HttpSession session, Model m) {
 		// 로그인 인터셉터
-		List<String> categories = Arrays.asList("DFS", "BFS", "재귀", "DP" ,"Dijkstra", "기타");
+		List<String> categories = Arrays.asList("DFS", "BFS", "재귀", "DP", "Dijkstra", "기타");
 		m.addAttribute("categories", categories);
 
 		return "problem/problemList";
 	}
 
 	@GetMapping("/category")
-	public String findByCategory(HttpSession session, Model m,
+	public String findByCategory(HttpSession session, Model m, Principal principal,
 			@RequestParam(name = "category", defaultValue = "기타") String category) {
-		// 세션에서 로그인 유저 정보 가져오기
-		String userid = "gang"; // [임시]
-		List<ProblemEntity> problems = problemService.findCategory(userid, category);
+		String memberId = principal.getName();
+		List<ProblemEntity> problems = problemService.findCategory(memberId, category);
 		m.addAttribute("problems", problems);
 
 		return "problem/typeOfProblem";
