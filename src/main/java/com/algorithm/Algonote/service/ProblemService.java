@@ -44,4 +44,9 @@ public class ProblemService {
 		problem.editProblem(userid, request.getTitle(), request.getText(), request.getCode(), request.getSolved(), request.getLanguage(), request.getCategory());
 		problemRepository.save(problem);
 	}
+	
+	public void delete(int problemNum) {
+		ProblemEntity problem = problemRepository.findById(problemNum).orElseThrow();
+		problemRepository.delete(problem);
+	}
 }

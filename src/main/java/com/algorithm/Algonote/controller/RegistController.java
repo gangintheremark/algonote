@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,5 +58,11 @@ public class RegistController {
 		return "수정되었습니다.";
 	}
 	
+	@DeleteMapping("/delete/{problemNum}")
+	@ResponseBody
+	public String delete(@PathVariable("problemNum") int problemNum) {
+		problemService.delete(problemNum);
+		return "삭제되었습니다.";
+	}
 	
 }
