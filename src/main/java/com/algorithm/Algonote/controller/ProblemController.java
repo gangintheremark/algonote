@@ -24,6 +24,9 @@ public class ProblemController {
 
 	@GetMapping("/problem")
 	public String problem(HttpSession session, Model m, Principal principal) {
+		if(principal == null) {
+			return "member/login";
+		}
 		String memberId = principal.getName();
 		List<ProblemEntity> problems = problemService.findProblems(memberId);
 		m.addAttribute("problems", problems);
