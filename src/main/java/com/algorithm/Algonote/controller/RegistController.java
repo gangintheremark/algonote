@@ -51,9 +51,10 @@ public class RegistController {
 	
 	@PutMapping("/modify/{problemNum}")
 	@ResponseBody
-	public void modify(@PathVariable int problemNum, ProblemEntity request, Principal principal) {
+	public String modify(@PathVariable("problemNum") int problemNum, @RequestBody ProblemEntity request, Principal principal) {
 		String memberId = principal.getName();
 		problemService.modify(problemNum, memberId, request);
+		return "수정되었습니다.";
 	}
 	
 	

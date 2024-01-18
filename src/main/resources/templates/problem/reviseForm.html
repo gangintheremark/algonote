@@ -70,7 +70,7 @@
 
 			$("#add").click(function (event) {
 				event.preventDefault();
-				$(".categories").append(`<li class="mx-2"> <input type="text" class="form-control mt-3" name="category" autocomplete="off" />
+				$(".categories").append(`<li class="mx-2"> <input type="text" class="form-control mt-3 category" name="category" autocomplete="off" />
                                 </li>`);                
 			})
 
@@ -80,12 +80,46 @@
 			});
 			
 			$("#editBtn").click(function (){
-				var title
-				var text
-				var code
-				var solved
-				var language
-				var category 
+				var problemNum = $("#problemNum").val();
+				var title = $("#title").val();
+				var text = $("#text").val();
+				var code = $("#code").val();
+				var solved = $("input[name='solved']:checked").val();
+				var language = $("#language").val();
+				var categories = [];
+				
+				$(".category").each(function() {
+    				categories.push($(this).val());
+				});
+				
+				var formData = {
+                    title: title,
+					text: text,
+					code: code,
+					solved: solved,
+					language: language,
+					category: categories
+                };
+                
+                $.ajax({
+                	type: 'put',
+                	url: 'modify/' + problemNum,
+                	data: JSON.stringify(formData),
+                    contentType: "application/json",
+                    success: function (response) {
+                        Swal.fire({
+                            text: response,
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            button: {
+                                text: '확인',
+                                closeModal: true
+                            }
+                        }).then(() => {
+                            window.location.href = 'problem';
+                        });
+                    }
+                });
 			});
 		});
 	</script>
@@ -99,10 +133,10 @@
 				<div class="input-form-backgroud row">
 					<div class="input-form col-md-12 mx-auto">
 						<h4 class="mb-3" style="text-align: center; font-weight:bold;">Modification</h4>
-						<form th:action="@{'modify/'+${problem.problemNum}}" method="put" class="validation-form" novalidate
-							onsubmit="return validateForm()">
+					<!-- 	<form th:action="@{'modify/'+${problem.problemNum}}" method="put" class="validation-form" novalidate
+							onsubmit="return validateForm()"> -->
 							<input type="hidden" name="difficulty" id="difficulty">
-							<input type="hidden" name="problemNum" th:value="${problem.problemNum}">
+							<input type="hidden" name="problemNum" id="problemNum" th:value="${problem.problemNum}">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" name="solved" id="Success" value="Success"
 									th:checked="${problem.solved == 'Success'}">
@@ -150,7 +184,7 @@
 								<ul class="categories">
 									<li>
 									<li th:each="category : ${problem.category}" class="me-2">
-										<input type="text" class="form-control mt-3" name="category" autocomplete="off"
+										<input type="text" class="form-control mt-3 category" name="category" autocomplete="off"
 											th:value="${category}" />
 
 									</li>
@@ -178,7 +212,6 @@
 									style="text-align: center;">CANCEL
 								</button>
 							</div>
-						</form>
 					</div>
 				</div>
 			</div>
