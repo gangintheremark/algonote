@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>회원탈퇴</title>
+    <style>
+        body {
+            margin: 0;
+            position: relative;
+        }
+
+        .input-form {
+            padding: 32px !important;
+            background: #fff;
+            -moz-border-radius: 10px;
+            border-radius: 20px;
+            -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+        }
+
+        .container {
+            min-width: 700px;
+        }
+
+        .example {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            min-height: 200px;
+            background: rgba(90, 138, 67, 0.73);
+        }
+
+        .example2 {
+            box-sizing: border-box;
+            position: absolute;
+            min-height: 500px;
+            top: 100px;
+        }
+
+        .btn {
+            background-color: #86AA75 !important;
+            border-color: #86AA75 !important;
+        }
+
+        .deleteBtn {
+            background-color: #C0C0C0 !important;
+            border-color: #C0C0C0 !important;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+</head>
+
+<body>
+<div th:include="'/common/nav'"></div>
+<div class="example" style="font-family: 'SUITE-Regular';">
+    <div class="example2 mt-5">
+        <div class="container">
+            <div class="input-form-backgroud row">
+                <div class="input-form col-md-12 mx-auto">
+                    <h4 class="mb-3">회원탈퇴</h4>
+                    <div></div>
+                    <form th:action="@{/member/withdraw}" method="post" class="validation-form" novalidate onsubmit="return validateForm()">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="password">비밀번호</label>
+                                <input type="password" class="form-control" name="passwd" id="password" required>
+                                <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <button class="btn btn-primary" type="submit">OK</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

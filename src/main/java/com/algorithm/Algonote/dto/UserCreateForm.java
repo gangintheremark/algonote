@@ -1,4 +1,4 @@
-package com.algorithm.Algonote.model;
+package com.algorithm.Algonote.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

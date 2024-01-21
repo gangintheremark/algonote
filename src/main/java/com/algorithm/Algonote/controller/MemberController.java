@@ -1,14 +1,21 @@
 package com.algorithm.Algonote.controller;
 
-import com.algorithm.Algonote.model.UserCreateForm;
+import com.algorithm.Algonote.dto.UserCreateForm;
+import com.algorithm.Algonote.model.MemberEntity;
 import com.algorithm.Algonote.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Controller
@@ -42,6 +49,26 @@ public class MemberController {
     @GetMapping("/login")
     public String login(){
         return "member/login";
+    }
+
+    @GetMapping("/withdraw")
+    public String deletePage() {
+        return "member/withdraw";
+    }
+    @PostMapping("/withdraw")
+    public String deleteUser(HttpSession session, Principal principal) throws Exception {
+        String memberId = principal.getName();
+        Optional<MemberEntity> memberEntity = memberService.findMember(memberId);
+
+        boolean res = memberService.deleteUser(memberEntity);
+        if (res == true) {
+            if (session != null) {
+                session.invalidate();
+            }
+            return "redirect:/main";
+        } else {
+            return "member/delete";
+        }
     }
 
 }
