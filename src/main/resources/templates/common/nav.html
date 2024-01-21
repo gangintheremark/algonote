@@ -73,6 +73,8 @@
                 <a th:href="@{/member/signup}" class="section1">JOIN</a>  &nbsp;
                 <a sec:authorize="isAnonymous()" th:href="@{/member/login}" class="section1">LOGIN</a>
                 <a sec:authorize="isAuthenticated()" th:href="@{/member/logout}" class="section1">LOGOUT</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/member/withdraw}" class="section1">WITHDRAW</a>
+
             </div>
 
             <div class="col-md-2 mt-3 mx-3"><a href="#" class="section2">Introduce</a></div>
