@@ -2,6 +2,9 @@ package com.algorithm.Algonote.controller;
 
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,29 +17,22 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping("/memberForm")
+    @RequestMapping("/member/signup")
     public String memberForm() {
-        return "member/join";
+        return "member/signup";
     }
 
-    @RequestMapping("/loginForm")
+    @RequestMapping("/member/login")
     public String loginForm() {
         return "member/login";
     }
 
     @RequestMapping("/registForm")
-    public String registForm() {
+    public String registForm(Principal principal) {
+		if(principal == null) {
+			return "member/login";
+		}
         return "problem/registration";
-    }
-
-    @RequestMapping("/myProblem")
-    public String myProblem() {
-        return "problem/myProblem";
-    }
-
-    @RequestMapping("/problemInfo")
-    public String problemInfo() {
-        return "problem/problemInfo";
     }
 
     @RequestMapping("/introduce")
